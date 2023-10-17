@@ -1,23 +1,31 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int Recursive(int n)
+int Recursive(int h, int j, int m) 
 {
-	if (n <= 1)
-	{
-		return (1);
-	}
 
-	return(n * Recursive(n - 1));
+    if (h <= 0) {
+        
+        return j;
+    }
+
+    return Recursive(h - 1, j += m, m * 2 - 50);
 
 }
 
-int main()
-{
-	int n = 10;
-	int result;
+int main() {
+    int hour = 6;
 
-	result = Recursive(n);
-	printf(" % d‚ÌŠKæ = %d\n", n, result);
+    int money = 100;
 
-	return(0);
+    int total = 0;
+
+    int normal = 1072;
+
+    int result;
+
+    result = Recursive(hour, total, money);
+
+    printf("%dŽžŠÔ“­‚¢‚½ˆê”Ê’À‹à‘ÌŒn %d F Ä‹A“I‚È’À‹à‘ÌŒn %d",hour, normal * hour, result);
+
+    return 0;
 }
