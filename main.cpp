@@ -15,7 +15,7 @@ int main() {
 	int num;
 	int select = 0;
 
-	printf("”¼‚©’š‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢\n");
+	printf("”¼‚©’š‚ğ‘I‚×\n");
 	printf("1‚Æ“ü—Í‚·‚é‚Æ”¼A2‚Æ“ü—Í‚·‚é‚Æ’š‚É‚È‚è‚Ü‚·\n");
 	scanf_s("%d", &select);
 	num = 1 + rand() % 6;
