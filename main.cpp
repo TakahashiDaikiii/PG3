@@ -1,28 +1,34 @@
 #include<stdio.h>
 #include<thread>
 #include <iostream>
-void Double(int num)
+void Printf1()
 {
-	num *= 2;
-	printf("num * 2: %d\n", num);
-
+	printf("thread1\n");
 };
 
-void AddTwo(int num)
+void Printf2()
 {
-	num += 2;
-	printf("num + 2:%d\n", num);
+	printf("thread2\n");
+};
+
+void Printf3()
+{
+	printf("thread3\n");
 };
 
 int main()
 {
-	int num = 3;
 	//マルチスレッドの場合
-	std::thread th1(Double, num);
-	std::thread th2(AddTwo, num);
-
+	std::thread th1(Printf1);
 	th1.join();
+
+	std::thread th2(Printf2);
 	th2.join();
+
+	std::thread th3(Printf3);
+	th3.join();
+
+
 
 	std::cout << "プログラムが終了しました。何かキーを入力して終了してください。" << std::endl;
 	std::cin.get();
