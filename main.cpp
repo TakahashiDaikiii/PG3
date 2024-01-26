@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<thread>
+#include <iostream>
 void Double(int num)
 {
 	num *= 2;
@@ -22,6 +23,9 @@ int main()
 
 	th1.join();
 	th2.join();
+
+	std::cout << "プログラムが終了しました。何かキーを入力して終了してください。" << std::endl;
+	std::cin.get();
 
 	return 0;
 }
