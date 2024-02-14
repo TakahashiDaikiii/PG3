@@ -1,13 +1,42 @@
-#include "Enemy.h"
+#include <stdio.h>
+
+
+template <typename T1, typename T2>
+class MinFinder 
+{
+public:
+    // 2‚Â‚Ìˆø”‚ğ”ä‚×A¬‚³‚¢’l‚ğ•Ô‚·
+    auto Min(T1 a, T2 b) -> decltype(a < b ? a : b) {
+        return (a < b) ? a : b;
+    }
+};
+
 
 int main() {
-    Enemy enemy;
+    // floatŒ^‚Ì‘g‚İ‡‚í‚¹
+    MinFinder<float, float> floatMinFinder;
+    float floatResult = floatMinFinder.Min(3.25f, 2.45f);
+    printf("Min: 3.25 or 2.45 <float>: %f\n", floatResult);
 
-    // ƒV[ƒ“‚ÌXV‚ğ”‰ñŒJ‚è•Ô‚·—á
+    // doubleŒ^‚Ì‘g‚İ‡‚í‚¹
+    MinFinder<double, double> doubleMinFinder;
+    double doubleResult = doubleMinFinder.Min(14.5, 8.2);
+    printf("Min: 14.5 or 8.2 <double>: %lf\n", doubleResult);
 
-    for (int i = 0; i < 3; ++i) {
-        enemy.Update();
-    }
+    // intŒ^‚ÆdoubleŒ^
+    MinFinder<int, double> intDoubleMinFinder;
+    int intDoubleResult = intDoubleMinFinder.Min(6, 7.9);
+    printf("Min: 6 or 7.9 <int>: %d\n", intDoubleResult);
+
+    // intŒ^‚ÆfloatŒ^
+    MinFinder<int, float> intFloatMinFinder;
+    int intFloatResult = intFloatMinFinder.Min(6, 2.45f);
+    printf("Min: 6 or 2.45 <int>: %d\n", intFloatResult);
+
+    // floatŒ^‚ÆdoubleŒ^
+    MinFinder<float, double> floatDoubleMinFinder;
+    float floatDoubleResult = floatDoubleMinFinder.Min(3.25f, 7.9);
+    printf("Min: 3.25 or 7.9 <float>: %f\n", floatDoubleResult);
 
     return 0;
 }
