@@ -9,6 +9,4 @@ public:
 protected:
 	
 	int area = 0;
-
-
 };

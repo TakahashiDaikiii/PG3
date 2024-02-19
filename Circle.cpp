@@ -10,5 +10,5 @@ void Circle::Size()
 
 void Circle::Draw()
 {
-	printf("‰~‚Ě–ĘĎ@%d\n", area);
+	printf("円の面積%d\n", area);
 }

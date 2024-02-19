@@ -10,5 +10,5 @@ void Rectangle::Size()
 
 void Rectangle::Draw()
 {
-	printf("‹éŚ`‚Ě–ĘĎ@%d\n", area);
+	printf("矩形の面積%d\n", area);
 }
