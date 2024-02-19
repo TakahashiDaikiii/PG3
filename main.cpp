@@ -1,13 +1,14 @@
+#include <stdio.h>
 #include "Enemy.h"
 
 int main() {
-    Enemy enemy;
 
-    // シーンの更新を数回繰り返す例
+	Enemy* enemy_ = new Enemy;
 
-    for (int i = 0; i < 3; ++i) {
-        enemy.Update();
-    }
+	while (enemy_->GetCount() == false) {
+		enemy_->Update();
+	}
 
-    return 0;
+
+	return 0;
 }

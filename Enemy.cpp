@@ -1,43 +1,46 @@
-#include "Enemy.h"
+ï»¿#include "Enemy.h"
+#include <Windows.h>
+#include <stdio.h>
 
-// Constructor
-Enemy::Enemy() 
+
+void (Enemy::* Enemy::fhaseTable[])() = {
+	&Enemy::Approach, 
+	&Enemy::Shooting,
+	&Enemy::Leave
+};
+
+
+void Enemy::Update()
 {
-    // ‰Šúó‘Ô‚ğİ’è
-    currentState = &Enemy::Approach;
-}
-// ó‘Ô‘JˆÚŠÖ”
-void Enemy::TransitionTo(void (Enemy::* newState)()) {
-    currentState = newState;
+
+	(this->*fhaseTable[static_cast<size_t>(phase_)])();
+
 }
 
-// XVŠÖ”
-void Enemy::Update() {
-    (this->*currentState)();
+void Enemy::Approach()
+{
+	printf("Âæ¥è¿‘\n");
+
+	Sleep(3 * 1000);
+
+	phase_ = Phase::SHOOTING;
+
 }
 
-//Ú‹ß
-void Enemy::Approach() {
-    printf("Ú‹ß\n");
-    TransitionTo(&Enemy::Shoot);
+void Enemy::Shooting()
+{
+	printf("å°„æ’ƒ\n");
+
+	Sleep(3 * 1000);
+
+	phase_ = Phase::LEAVE;
+
 }
 
-//ËŒ‚
-void Enemy::Shoot() {
-    printf("ËŒ‚\n");
-    TransitionTo(&Enemy::Withdraw);
-}
+void Enemy::Leave()
+{
+	printf("é›¢è„±\n");
 
-//—£’E
-void Enemy::Withdraw() {
-    printf("—£’E\n");
+	count = true;
 
-    TransitionTo(&Enemy::Approach);
-}
-
-// ŠÖ”ƒe[ƒuƒ‹‚Ì‰Šú‰»
-void Enemy::spFuncTable() {
-    stateFunctions[0] = &Enemy::Approach;
-    stateFunctions[1] = &Enemy::Shoot;
-    stateFunctions[2] = &Enemy::Withdraw;
 }

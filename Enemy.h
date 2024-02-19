@@ -1,29 +1,33 @@
-#include <cstdio>
-
-class Enemy {
+ï»¿#include"Phase.h"
+class Enemy
+{
 public:
 
-    Enemy();
-    // ó‘Ô‘JˆÚŠÖ”
-    void TransitionTo(void (Enemy::* newState)());
+	/// <summary>
+	/// ÂXÂV
+	/// </summary>
+	void Update();
 
-    // XVŠÖ”
-    void Update();
 
-private:
-    //Ú‹ß
-    void Approach();
-
-    //ËŒ‚
-    void Shoot();
-
-    //—£’E
-    void Withdraw();
-
-    // ŠÖ”ƒe[ƒuƒ‹‚Ì‰Šú‰»
-    void spFuncTable();
+	bool GetCount() { return count; }
 
 private:
-    void (Enemy::* currentState)();
-    void (Enemy::* stateFunctions[3])();  // ŠÖ”ƒe[ƒuƒ‹
+
+
+	void Approach();
+
+	void Shooting();
+
+	void Leave();
+
+
+
+private:
+
+	static void (Enemy::* fhaseTable[])();
+
+	Phase phase_ = Phase::APPROACH;
+
+	bool count = false;
+
 };
