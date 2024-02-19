@@ -1,43 +1,73 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <iostream>
+#include <Windows.h>
+#include <list>
 
-template<typename Type>
+int main(void) {
+	SetConsoleOutputCP(65001);;
 
-Type Min(Type a, Type b)
-{
-	if (a > b)
-	{
-		return static_cast<Type> (b);
+	std::list<const char*> yamanoteStationName = {
+		"Tokyo",
+		"Kanda",
+		"Akihabara",
+		"Okachimachi",
+		"Ueno",
+		"Uguisudani",
+		"Nippori",
+		"Tabata",
+		"Komagome",
+		"Sugamo",
+		"Otsuka",
+		"Ikebukuro",
+		"Mejiro",
+		"Takadanobaba",
+		"Shin-Okubo",
+		"Shinjuku",
+		"Yoyogi",
+		"Harajuku",
+		"Shibuya",
+		"Ebisu",
+		"Meguro",
+		"Gotanda",
+		"Osaki",
+		"Shinagawa",
+		"Tamachi",
+		"Hamamatsucho",
+		"Shimbashi",
+		"Yurakucho",
+	};
+
+	std::cout << "1970年の山手線駅一覧" << std::endl;
+
+	for (auto& name : yamanoteStationName) {
+		std::cout << name << std::endl;
 	}
 
-	if (a < b)
-	{
-		return static_cast<Type> (b);
+	std::cout << "\n" << std::endl;
+
+	auto findStationNameIterator = std::find(yamanoteStationName.begin(), yamanoteStationName.end(), "Nippori");
+	findStationNameIterator++;
+	yamanoteStationName.insert(findStationNameIterator, "Nishi-Nippori");
+
+	std::cout << "2019年の山手線駅一覧" << std::endl;
+
+	for (auto& name : yamanoteStationName) {
+		std::cout << name << std::endl;
 	}
-}
 
-template<>
+	std::cout << "\n" << std::endl;
 
-char Min<char>(char a, char b)
-{
-	printf("数字以外は代入できません");
-	return 0;
-}
+	findStationNameIterator = std::find(yamanoteStationName.begin(), yamanoteStationName.end(), "Shinagawa");
+	findStationNameIterator++;
+	findStationNameIterator = yamanoteStationName.insert(findStationNameIterator, "Takanawa Gateway");
 
-int main()
-{
-	char a = 'a';
-	char b = 'b';
+	std::cout << "2022年の山手線駅一覧" << std::endl;
 
-	printf("%d\n", Min<int>(200, 90));
+	for (auto& name : yamanoteStationName) {
+		std::cout << name << std::endl;
+	}
 
-
-	printf("%f\n", Min<float>(10.0f, 90.0f));
-
-
-	printf("%f\n", Min<double>(15.0f, 9.0f));
-
-	Min<char>(a, b);
+	getchar();
 
 	return 0;
 }
-
