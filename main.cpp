@@ -1,43 +1,33 @@
-#include<stdio.h>
+#include <iostream>
+#include <string>
+#include <chrono>
+#include <Windows.h>
 
-template<typename Type>
-
-Type Min(Type a, Type b)
+int main(void) 
 {
-	if (a > b)
-	{
-		return static_cast<Type> (b);
-	}
 
-	if (a < b)
-	{
-		return static_cast<Type> (b);
-	}
+    std::string a(100000, 'a');
+
+    {
+        auto start = std::chrono::steady_clock::now();
+        std::string copy = a;
+        auto end = std::chrono::steady_clock::now();
+
+        auto duration = end - start;
+        std::cout << "コピーにかかった時間: " << duration.count() << " マイクロ秒" << std::endl;
+    }
+
+    {
+        auto start = std::chrono::steady_clock::now();
+        std::string move = std::move(a);
+        auto end = std::chrono::steady_clock::now();
+
+        auto duration = end - start;
+        std::cout << "移動にかかった時間: " << duration.count() << " マイクロ秒" << std::endl;
+    }
+
+
+    getchar();
+
+    return 0;
 }
-
-template<>
-
-char Min<char>(char a, char b)
-{
-	printf("数字以外は代入できません");
-	return 0;
-}
-
-int main()
-{
-	char a = 'a';
-	char b = 'b';
-
-	printf("%d\n", Min<int>(200, 90));
-
-
-	printf("%f\n", Min<float>(10.0f, 90.0f));
-
-
-	printf("%f\n", Min<double>(15.0f, 9.0f));
-
-	Min<char>(a, b);
-
-	return 0;
-}
-
